@@ -15,9 +15,22 @@
 </head>
 <body>
     <div id="root">
-        
+        <header>
+            <div class="container">
+                <img src="logo.png" alt="logo" />
+                <input type="text" name="search" v-model="searched">
+                <button type="button" name="button" @click="movieSearch"> Search </button>
+            </div>
+        </header>
+        <div class="cds-container container">
+            <div class="cd" v-for="movie in allMovies">
+                <img :src="uriImg+movie.poster_path" alt="">
+                <h3>{{ movie.title }}</h3>
+                <span class="author">{{ movie.popularity }}</span>
+                <span class="year">{{ movie.release_date }}</span>
+            </div>
+        </div>
     </div>
-
 <script src="script.js"></script>
 </body>
 </html>

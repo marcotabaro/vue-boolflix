@@ -1,15 +1,19 @@
-const API_KEY = b1c34fb435544b294b8ba79826dd86ac;
-
-const rootApp = new Vue ({
+const myApp = new Vue ({
     el:"#root",
     data: {
       allMovies: [],
-      Searched: ''
+      searched: '',
+      api_key: 'b1c34fb435544b294b8ba79826dd86ac',
+      uriImg: 'https://image.tmdb.org/t/p/w500/'
     },
-  
-    mounted() {
-      axios.get("https://api.themoviedb.org/3/search/movie")
-      
-      .then (result => this.allMovies = result.data.response)
+    methods: {
+        movieSearch() {
+      axios.get("https://api.themoviedb.org/3/search/movie", { params: {
+            'api_key': this.api_key,
+            query: this.searched
+        }
+      })
+      .then (response => this.allMovies = response.data.results)
     }
-  })
+}
+})
