@@ -25,9 +25,10 @@
         <div class="cds-container container">
             <div class="cd" v-for="movie in allMovies">
                 <img :src="uriImg+movie.poster_path" alt="">
-                <h3>{{ movie.title }}</h3>
-                <span class="author">{{ movie.popularity }}</span>
-                <span class="year">{{ movie.release_date }}</span>
+                <h4>{{ movie.title }}</h4>
+                <span class="original_title">{{ movie.original_title }}</span>
+                <span class="lang"><img :src="'img/' + movie.original_language + '.png'" :alt="movie.original_language"></span>
+                <span class="vote">{{ movie.vote_average }} </span>
             </div>
         </div>
     </div>
