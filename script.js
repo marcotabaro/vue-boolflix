@@ -4,27 +4,30 @@ const myApp = new Vue ({
       allMovies: [],
       searched: '',
       stars: 5,
-      standardParams: {
-        
-    },
-      api_key: 'b1c34fb435544b294b8ba79826dd86ac',
+      apikey: 'b1c34fb435544b294b8ba79826dd86ac',
       uriImg: 'https://image.tmdb.org/t/p/w500/'
     },
     methods: {
         movieSearch() {
-      axios.get("https://api.themoviedb.org/3/search/movie", { params: 
-      {'api_key': api_key,
-      query: this.searched,
-      language: 'it'}
-      })
-      .then (response => this.allMovies = response.data.results)
-      axios.get("https://api.themoviedb.org/3/search/tv", { params: 'api_key': api_key,
-      query: this.searched,
-      language: 'it'})
-      .then (resp => this.allMovies.concat(resp.data.results))
-    },
+
+      //Get for movie
+      axios.get("https://api.themoviedb.org/3/search/movie",
+      {params: {api_key: this.apikey,
+                query: this.searched,
+                language: 'it'
+      }})
+      .then(response => this.allMovies = response.data.results)
+
+      //Get for Tv Series
+      axios.get("https://api.themoviedb.org/3/search/tv",
+      {params: {api_key: this.apikey,
+                query: this.searched,
+                language: 'it'
+      }})
+      .then(resp => this.allMovies.concat(resp.data.results));
+      },
       starRating(rate) {
-          return Math.ceil(rate / 2);
-        }
+        return Math.ceil(rate / 2);
+      }
     }
 })
