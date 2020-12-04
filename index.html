@@ -33,6 +33,7 @@
                 <span class="lang"><img :src="'img/' + movie.original_language + '.png'" :alt="movie.original_language"></span>
                 <span class="vote"><i class='fa-star' v-for="star in stars" :class="(starRating(movie.vote_average) >= star) ? 'fas' : 'far'"></i></span>
             </div>
+            <button @click="nextPage()">PAGINA SUCCESSIVA</button>
         </div>
     </div>
 <script src="script.js"></script>
