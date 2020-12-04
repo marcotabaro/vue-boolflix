@@ -16,7 +16,8 @@ const myApp = new Vue ({
                 query: this.searched,
                 language: 'it'
       }})
-      .then(response => this.allMovies = response.data.results);
+      .then(response => {this.allMovies = this.allMovies.concat(response.data.results);
+      });
 
       //Get for Tv Series
       axios.get("https://api.themoviedb.org/3/search/tv",
@@ -24,7 +25,8 @@ const myApp = new Vue ({
                 query: this.searched,
                 language: 'it'
       }})
-      .then(resp => this.allMovies.concat(resp.data.results))
+      .then(response => {this.allMovies = this.allMovies.concat(response.data.results);
+      });
       },
       starRating(rate) {
         return Math.ceil(rate / 2);
