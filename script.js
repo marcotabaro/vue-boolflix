@@ -3,7 +3,9 @@ const myApp = new Vue ({
     data: {
       allMovies: [],
       searched: '',
+      stars: 5,
       api_key: 'b1c34fb435544b294b8ba79826dd86ac',
+
       uriImg: 'https://image.tmdb.org/t/p/w500/'
     },
     methods: {
@@ -14,6 +16,9 @@ const myApp = new Vue ({
         }
       })
       .then (response => this.allMovies = response.data.results)
-    }
+    },
+        starRating(rate) {
+          return Math.ceil(rate / 2);
+        }
 }
 })

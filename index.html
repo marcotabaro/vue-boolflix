@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
 
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+
     <!-- Axios library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
 
@@ -19,7 +22,7 @@
             <div class="container">
                 <img src="logo.png" alt="logo" />
                 <input type="text" name="search" v-model="searched">
-                <button type="button" name="button" @click="movieSearch"> Search </button>
+                <button type="button" name="button" @click="movieSearch" @keydown.enter="movieSearch"> Search </button>
             </div>
         </header>
         <div class="cds-container container">
@@ -28,7 +31,7 @@
                 <h4>{{ movie.title }}</h4>
                 <span class="original_title">{{ movie.original_title }}</span>
                 <span class="lang"><img :src="'img/' + movie.original_language + '.png'" :alt="movie.original_language"></span>
-                <span class="vote">{{ movie.vote_average }} </span>
+                <span class="vote"><i class='fa-star' v-for="star in stars" :class="(starRating(movie.vote_average) >= star) ? 'fas' : 'far'"></i></span>
             </div>
         </div>
     </div>
