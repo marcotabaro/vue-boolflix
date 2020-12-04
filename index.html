@@ -21,15 +21,15 @@
         <header>
             <div class="container">
                 <img src="logo.png" alt="logo" />
-                <input type="text" name="search" v-model="searched">
-                <button type="button" name="button" @click="movieSearch" @keydown.enter="movieSearch"> Search </button>
+                <input type="text" name="search" v-model="searched" @keydown.enter="movieSearch">
+                <button type="button" name="button" @click="movieSearch"> Search </button>
             </div>
         </header>
         <div class="cds-container container">
             <div class="cd" v-for="movie in allMovies">
                 <img :src="uriImg+movie.poster_path" alt="">
-                <h4>{{ movie.title }}</h4>
-                <span class="original_title">{{ movie.original_title }}</span>
+                <h4>{{ movie.title }}{{ movie.name }}</h4>
+                <span class="original_title">{{ movie.original_title }} {{ movie.original_name }}</span>
                 <span class="lang"><img :src="'img/' + movie.original_language + '.png'" :alt="movie.original_language"></span>
                 <span class="vote"><i class='fa-star' v-for="star in stars" :class="(starRating(movie.vote_average) >= star) ? 'fas' : 'far'"></i></span>
             </div>
