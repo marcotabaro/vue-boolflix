@@ -21,19 +21,20 @@
         <header>
             <div class="container">
                 <img src="logo.png" alt="logo" />
-                <input type="text" name="search" v-model="searched" @keydown.enter="movieSearch">
-                <button type="button" name="button" @click="movieSearch"> Search </button>
+                <input type="text" name="search" v-model="searched" @keydown.enter="search()" placeholder="Ricerca...">
             </div>
         </header>
         <div class="cds-container container">
-            <div class="cd" v-for="movie in allMovies">
-                <img :src="uriImg+movie.poster_path" alt="movie Poster" @error='notFound'>
-                <h4>{{ movie.title }}{{ movie.name }}</h4>
-                <span class="original_title">{{ movie.original_title }} {{ movie.original_name }}</span>
-                <span class="lang"><img :src="'img/' + movie.original_language + '.png'" :alt="movie.original_language"></span>
-                <span class="vote"><i class='fa-star' v-for="star in stars" :class="(starRating(movie.vote_average) >= star) ? 'fas' : 'far'"></i></span>
+            <div class="cd" v-for="movie in multiSearch">
+                <img v-if="movie.poster_path" :src="uriImg+movie.poster_path" alt="movie Poster"> <img v-else src="img/notfound.png" alt="not found">
+                <div class='hide info'>
+                    <h4 class='title'>{{ movie.title }}{{ movie.name }}</h4>
+                    <span :class='movie.title == movie.original_title ? "hide" : "show"' class="original_title">{{ movie.original_title }}{{ movie.original_name }}</span>
+                    <span class="lang"><img :src="'img/' + movie.original_language + '.png'" :alt="movie.original_language"></span>
+                    <span class="vote"><i class='fa-star' v-for="star in stars" :class="(starRating(movie.vote_average) >= star) ? 'fas' : 'far'"></i></span>
+                    <span class='overview'>{{ movie.overview }}</span>
+                </div>
             </div>
-            <button @click="nextPage()">PAGINA SUCCESSIVA</button>
         </div>
     </div>
 <script src="script.js"></script>
